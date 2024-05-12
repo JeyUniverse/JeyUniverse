@@ -1,0 +1,553 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: HomePage(),
+  ));
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Offline Coding App',
+          
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.pink[200], // Lighter shade of pink
+        centerTitle: true,
+        
+      ),
+      backgroundColor: Colors.white,
+     body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Column(
+              children: [
+                Text(
+                  'SOLO',
+                  style: TextStyle(
+                    fontSize: 70,
+                    fontWeight: FontWeight.bold,
+                    foreground: Paint()
+                      ..shader = LinearGradient(
+                        colors: <Color>[Colors.orange, Colors.pink],
+                      ).createShader(Rect.fromLTWH(100.0, 50.0, 100.0, 50.0)),
+                  ),
+                ),
+                SizedBox(height: 0.0), // Adjust spacing between SOLO and Learn
+              
+              ],
+            ),
+            Column(
+              children: [
+                SizedBox(height: 0.0), // Adjust spacing between SOLO and Learn
+                Text(
+                  'LEARN',
+                  style: TextStyle(
+                    fontSize: 70,
+                    fontWeight: FontWeight.bold,
+                    foreground: Paint()
+                      ..shader = LinearGradient(
+                        colors: <Color>[Colors.pink, Colors.orange],
+                      ).createShader(Rect.fromLTWH(100.0, 50.0, 50.0, 100.0)),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to the third page (QuizPage)
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => QuizPage()),
+                );
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[300]!), // Lighter shade of gray
+              ),
+              child: Text(
+                'Take a quiz',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to the second page (SecondPage)
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PracticePage()),
+                );
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[300]!), // Lighter shade of gray
+              ),
+              child: Text(
+                'View Programming Languages',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class QuizPage extends StatefulWidget {
+  @override
+  _QuizPageState createState() => _QuizPageState();
+}
+
+class _QuizPageState extends State<QuizPage> {
+  int _correctAnswers = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Coding Quiz',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.pink[200], // Lighter shade of gray
+        centerTitle: true,
+      ),
+      backgroundColor: Colors.white,
+      body: ListView(
+        padding: EdgeInsets.all(20),
+        children: <Widget>[
+          QuizQuestion(
+            question: '1. What does HTML stand for?',
+            options: ['Hyper Text Markup Language', 'Hyperlinks and Text Markup Language', 'Home Tool Markup Language'],
+            correctAnswer: 'Hyper Text Markup Language',
+          codeSnippet: '<html>\n  <head>\n    <title>Hello World</title>\n  </head>\n  <body>\n    <h1>Hello, World!</h1>\n  </body>\n</html>',
+          ),
+          QuizQuestion(
+            question: '2. What does CSS stand for?',
+            options: ['Cascading Style Sheets', 'Computer Style Sheets', 'Colorful Style Sheets'],
+            correctAnswer: 'Cascading Style Sheets',
+            codeSnippet: 'body {\n  background-color: lightblue;\n}\n\nh1 {\n  color: navy;\n}',
+          ),
+          QuizQuestion(
+            question: '3. What does PHP stand for?',
+            options: ['Hypertext Preprocessor', 'Hypertext Processor', 'Home Page Processor'],
+            correctAnswer: 'Hypertext Preprocessor',
+            codeSnippet: '<?php\n  echo "Hello, World!";\n?>',
+          ),
+          QuizQuestion(
+            question: '4. What is the output of the following JavaScript code? console.log(3 + 4 + "5");',
+            options: ['"75"', '"345"', '"7"', '"12"'],
+            correctAnswer: '"75"',
+            codeSnippet: '// JavaScript code\nconsole.log(3 + 4 + "5");',
+          ),
+QuizQuestion(
+            question: '5. Which of the following is not a valid Python data type?',
+            options: ['Tuple', 'Dictionary', 'Array', 'List'],
+            correctAnswer: 'Array',
+  codeSnippet: '# Python code\nmy_list = [1, 2, 3, 4, 5]\nmy_dict = {"name": "John", "age": 30}',
+          ),
+          QuizQuestion(
+            question: '6. What does SQL stand for?',
+            options: ['Structured Query Language', 'Sequential Query Language', 'Simple Query Language', 'Standard Query Language'],
+            correctAnswer: 'Structured Query Language',
+            codeSnippet: '-- SQL code\nSELECT * FROM users WHERE age > 18;',
+          ),
+          QuizQuestion(
+            question: '7. What is the output of the following C++ code?',
+            options: ['Hello, World!', 'HelloWorld!', 'No output', 'Compile-time error'],
+            correctAnswer: 'Hello, World!',
+            codeSnippet: 'C++ code\n#include <iostream>\nusing namespace std;\nint main() {\n  cout << "Hello, World!";\n  return 0;\n}',
+          ),
+          QuizQuestion(
+            question: '8. What does CSS3 introduce?',
+            options: ['Media Queries', 'Flexbox', 'Grid', 'All of the above'],
+            correctAnswer: 'All of the above',
+            codeSnippet: '/* CSS3 code */\n@media screen and (max-width: 600px) {\n  body {\n    background-color: lightblue;\n  }\n}',
+          ),
+          QuizQuestion(
+            question: '9. What is the output of the following Python code?\n\nx = 5\ny = 3\nprint(x * y)',
+            options: ['8', '15', '5', 'None of the above'],
+            correctAnswer: '15',
+            codeSnippet: '# Python code\nx = 5\ny = 3\nprint(x * y)',
+          ),
+          QuizQuestion(
+            question: '10. What does the following SQL query do? SELECT * FROM users WHERE age > 18;',
+            options: ['Selects all users with age greater than 18', 'Selects all users with age less than 18', 'Selects all users', 'Selects all users with age equal to 18'],
+            correctAnswer: 'Selects all users with age greater than 18',
+            codeSnippet: '-- SQL code\nSELECT * FROM users WHERE age > 18;',
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+         setState(() {
+            _correctAnswers = calculateCorrectAnswers();
+          });
+        },
+        child: Icon(Icons.arrow_forward),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+     bottomNavigationBar: _correctAnswers > 0
+    ? Container(
+        color: Colors.grey[300],
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Good Job!',
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+              child: Text('Home'),
+            ),
+          ],
+        ),
+      )
+    : null,
+    );
+  }
+
+  // Method to calculate the total number of correct answers
+  int calculateCorrectAnswers() {
+    // Replace this with your actual logic to calculate correct answers
+    // For now, it just returns a dummy value
+    return 9;
+  }
+}
+
+class QuizQuestion extends StatefulWidget {
+  final String question;
+  final List<String> options;
+  final String correctAnswer;
+  final String codeSnippet; // Definition of codeSnippet property
+
+  const QuizQuestion({
+    required this.question,
+    required this.options,
+    required this.correctAnswer,
+    required this.codeSnippet, // Include codeSnippet in constructor
+  });
+
+  @override
+  _QuizQuestionState createState() => _QuizQuestionState();
+}
+
+class _QuizQuestionState extends State<QuizQuestion> {
+  String? selectedOption;
+
+  @override
+  Widget build(BuildContext context) {
+       return Center(
+      child: Container(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start, // Align left
+        children: [
+          Text(
+            widget.question,
+            style: TextStyle(
+              fontSize: 17,
+            ),
+          ),
+        SizedBox(height: 10),
+        // Display code snippet
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          padding: EdgeInsets.all(8.0),
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          child: Text(
+            widget.codeSnippet, // Access codeSnippet from widget
+            style: TextStyle(
+              fontFamily: 'Courier',
+              fontSize: 14,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        Column(
+          children: widget.options.map((option) {
+            return RadioListTile<String>(
+              title: Text(
+                option,
+                style: TextStyle(color: Colors.black),
+              ),
+              value: option,
+              groupValue: selectedOption,
+              onChanged: (value) {
+                setState(() {
+                  selectedOption = value;
+                });
+              },
+            );
+          }).toList(),
+        ),
+      ],
+     )
+    )
+   );
+  }
+}
+
+class PracticePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Programming Languages'),
+        backgroundColor: Colors.pink[200], // Set the app bar color to pink
+      ),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              LanguageCard(
+                language: 'HTML',
+                description:
+                    'HTML (HyperText Markup Language) is the standard markup language for creating web pages and web applications. HTML describes the structure of a web page semantically and originally included cues for the appearance of the document.',
+                color: Colors.orange,
+                icon: Icons.language,
+                sampleCodes: [
+                  'Sample Code 1:',
+                 '<!DOCTYPE html>',
+                  '<html>',
+                  '  <head>',
+                  '    <title>Sample HTML Page</title>',
+                  '  </head>',
+                  '          ',
+                  'Sample Code 2:',
+                  '  <body>',
+                  '    <h1>Hello, World!</h1>',
+                  '  </body>',
+                  '</html>',
+                ],
+              ),
+              SizedBox(height: 20),
+              LanguageCard(
+                language: 'CSS',
+                description:
+                    'CSS (Cascading Style Sheets) is a style sheet language used for describing the presentation of a document written in HTML. CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.',
+                color: Colors.blue,
+                icon: Icons.format_paint,
+                sampleCodes: [
+                  'Sample Code 1:',
+                  'body {',
+                  '  background-color: lightblue;',
+                  '}',
+                  '',
+                  'Sample Code 2:',
+                  'h1 {',
+                  '  color: navy;',
+                  '  margin-left: 20px;',
+                  '}',
+                ],
+              ),
+              SizedBox(height: 20),
+              LanguageCard(
+                language: 'Ruby',
+                description: 'Ruby is a dynamic, reflective, object-oriented, general-purpose programming language known for its simplicity and productivity.',
+                color: Colors.redAccent,
+                icon: Icons.code,
+                sampleCodes: [
+                  'puts "Hello, World!"',
+                ],
+              ),
+              SizedBox(height: 20),
+              LanguageCard(
+                language: 'JavaScript',
+                description: 'JavaScript is a programming language that enables interactive web pages and is an essential part of web development.',
+                color: Colors.amber,
+                icon: Icons.language,
+                sampleCodes: [
+                  'Sample Code 1:',
+                  'console.log("Hello, World!");',
+                  '',
+                  'Sample Code 2:',
+                  'function greet(name) {',
+                  '  return "Hello, " + name + "!";',
+                  '}',
+                  '',
+                  'Sample Code 3:',
+                  'var message = greet("John");',
+                  'console.log(message);',
+                ],
+              ),
+              SizedBox(height: 20),
+              LanguageCard(
+                language: 'Python',
+                description:'Python is a high-level, interpreted programming language known for its simplicity and readability, making it great for beginners.',
+                color: Colors.green,
+                icon: Icons.code,
+                sampleCodes: [
+                  'Sample Code 1:',
+                  'print("Hello, World!")',
+                  '',
+                  'Sample Code 2:',
+                  'def greet(name):',
+                  '    return "Hello, " + name + "!"',
+                  '',
+                  'Sample Code 3:',
+                  'message = greet("John")',
+                  'print(message)',
+                ],
+              ),
+              SizedBox(height: 20),
+              LanguageCard(
+                language: 'Java',
+                description:
+                    'Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible.',
+                color: Colors.red,
+                icon: Icons.coffee,
+                sampleCodes: [
+                  'public class Main {',
+                  '    public static void main(String[] args) {',
+                  '        System.out.println("Hello, World!");',
+                  '    }',
+                  '}',
+                ],
+              ),
+              SizedBox(height: 20),
+              LanguageCard(
+                language: 'PHP',
+                description:
+                    'PHP is a server-side scripting language designed primarily for web development but also used as a general-purpose programming language.',
+                color: Colors.indigo,
+                icon: Icons.pages,
+                sampleCodes: [
+                  '<?php',
+                  'echo "Hello, World!";',
+                  '?>',
+                ],
+              ),
+              SizedBox(height: 20),
+              LanguageCard(
+                language: 'C++',
+                description:
+                    'C++ is a general-purpose programming language created as an extension of the C programming language. C++ supports imperative, object-oriented, and generic programming features, while also providing facilities for low-level memory manipulation.',
+                color: Colors.green,
+                icon: Icons.code,
+                sampleCodes: [
+                  '#include <iostream>\nusing namespace std;\n\nint main() {\n  cout << "Hello, World!";\n  return 0;\n}'
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class LanguageCard extends StatelessWidget {
+  final String language;
+  final String description;
+  final Color color;
+  final IconData icon;
+  final List<String> sampleCodes;
+
+  LanguageCard({
+    required this.language,
+    required this.description,
+    required this.color,
+    required this.icon,
+    required this.sampleCodes,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        _showSampleCodesDialog(context);
+      },
+      child: Card(
+        elevation: 3,
+        color: Colors.white, // Changed to white color
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Icon(
+                    icon,
+                    color: color,
+                  ),
+                  Text(
+                    language,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: color,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Text(
+                description,
+                style: TextStyle(fontSize: 16),
+              ),
+              
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  
+
+  void _showSampleCodesDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Sample Codes'),
+          content: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: sampleCodes
+                  .map((code) => Text(
+                        code,
+                        style: TextStyle(fontFamily: 'Courier'),
+                      ))
+                  .toList(),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+
